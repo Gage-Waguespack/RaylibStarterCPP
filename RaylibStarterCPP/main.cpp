@@ -22,16 +22,21 @@
 #include "raylib.h"
 #include <iostream>
 
+//Initialize Hash function
 unsigned int Hash(unsigned char* data)
 {
+    //creating 2 variables to use in thhe function
     unsigned int hash = 0;
     unsigned int x = 0;
 
+    //created a for-loop that loops until i = 0
     for (unsigned char* i = data; *i != '\0'; ++i)
     {
+        //multiplied the hash to give it some color and added the iterator
         hash = (hash * 420) + *i;
     }
 
+    //returned the end result (the hash)
     return (hash);
 }
 
