@@ -22,22 +22,17 @@
 #include "raylib.h"
 #include <iostream>
 
-unsigned int ElfHash(unsigned char* data)
+unsigned int Hash(unsigned char* data)
 {
     unsigned int hash = 0;
     unsigned int x = 0;
 
     for (unsigned char* i = data; *i != '\0'; ++i)
     {
-        hash = (hash << 4) + *i;
-        if ((x = hash & 0xF0000000L) != 0)
-        {
-            hash ^= (x >> 24);
-            hash &= ~x;
-        }
+        hash = (hash * 420) + *i;
     }
 
-    return (hash & 0x7FFFFFFF);
+    return (hash);
 }
 
 int main(int argc, char* argv[])
@@ -63,7 +58,7 @@ int main(int argc, char* argv[])
         //----------------------------------------------------------------------------------
 
         std::cin >> input;
-        checkSum = ElfHash(input);
+        checkSum = Hash(input);
 
         //----------------------------------------------------------------------------------
         
